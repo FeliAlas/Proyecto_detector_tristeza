@@ -19,7 +19,8 @@
 static const char *TAG = "DISPENSADOR";
 
 // --- CREDENCIALES WiFi ---
-*/
+#define WIFI_SSID       "FELIX-ALAS-LAPT 9606"
+#define WIFI_PASS       ""
 
 // --- IP FIJA ---
 #define STATIC_IP_0     192
