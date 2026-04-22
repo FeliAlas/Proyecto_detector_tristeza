@@ -10,9 +10,6 @@ import io
 import requests # Necesario para el buffer de imagen
 
 
-# ==========================================
-#  PROMPT DE INGENIERÍA (MODO AGRESIVO)
-# ==========================================
 
 SYSTEM_PROMPT = """
 Eres un experto y especialista en FACS (Facial Action Coding System), con integración en psicología y psiquiatría para detectar emociones subyacentes basadas en evidencia científica, como estudios sobre expresiones faciales en trastornos afectivos (e.g., depresión subclínica según DSM-5, donde microexpresiones y AUs indican biomarcadores de distress emocional sin diagnósticos clínicos).
@@ -39,7 +36,7 @@ Directrices Generales:
 - No incluyas markdown, texto adicional ni explicaciones fuera del JSON.
 """
 
-# --- CLAVES HARDCODED (Para pruebas rápidas) ---
+
 DEFAULT_GEMINI_KEY = ""
 DEFAULT_AZURE_KEY = ""
 
@@ -108,15 +105,10 @@ def consultar_azure(input_data, api_key, endpoint, deployment_name="gpt-5-chat",
                 img_rgb = cv2.cvtColor(input_data, cv2.COLOR_BGR2RGB)
                 pil_img = PIL.Image.fromarray(img_rgb)
 
-            # --- REDIMENSIÓN SEGURA ---
-            # Mantenemos lógica de alta resolución (1024-2048)
+
             w, h = pil_img.size
-            #if w < 1024 and h < 1024:
-             #   scale = max(1024/w, 1024/h)
-            #    new_w, new_h = int(w * scale), int(h * scale)
-            #    pil_img = pil_img.resize((new_w, new_h), PIL.Image.BICUBIC)
-            #elif w > 2048 or h > 2048:
-            #    pil_img.thumbnail((2048, 2048))
+         
+      
     
             # Solo intervenimos si la imagen es DEMASIADO GRANDE (>1024px en algún lado).
             # Si es pequeña, la dejamos como está — el modelo puede analizarla correctamente
